@@ -15,6 +15,15 @@ alembic upgrade head
 ```bash
 python main.py
 ```
+5. you can also build the docker container by running the following command
+```bash
+docker build -t auction_management .
+```
+6. you can run the docker container by running the following command
+```bash
+docker run -d -p 8000:8000 auction_management
+```
+## Testing
 1. now you can go to the postman the collection is provided in the repository by the name of auction management.postman_collection.json
 2. you can import the collection in the postman and test the api's
 3. you can also go to the swagger documentation by going to the following url
