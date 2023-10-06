@@ -1,0 +1,345 @@
+2022-07-14 15:19:08,519 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1211 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 15:19:08,760 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-152' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 15:20:08,208 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1211 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 15:20:08,447 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-62' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:15:05,839 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1211 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:15:05,860 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:16:03,852 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1211 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:16:03,872 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:16:21,898 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1211 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:16:21,918 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:18:51,012 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1212 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:18:51,033 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:19:49,715 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1212 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:19:49,737 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:20:42,551 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1212 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:20:42,572 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:22:48,802 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1213 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:22:48,827 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:58:22,322 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1212 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:58:22,342 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-131' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:58:37,607 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1213 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:58:37,846 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:58:43,435 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1213 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:58:43,670 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:58:49,482 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1213 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:58:49,723 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:58:53,695 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1213 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:58:53,929 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+2022-07-14 17:58:57,469 :: WARNING :: get_file_data :: 28 :: 
+ Assignment ID 1213 
+ 
+Item doesn't exist
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/resources/file_information_2.py", line 22, in get_file_data
+    file_information, collaborators, task_information = await find_file_info_2(assignment_id, current_user)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 102, in find_file_info_2
+    await file_info(
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_file_information.py", line 76, in file_info
+    words_allocated = await task_4
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 387, in file_info_det
+    raise ItemNotFound
+src.db.errors.ItemNotFound
+================================================================== 
+2022-07-14 17:58:57,704 :: ERROR :: default_exception_handler :: 1753 :: Task exception was never retrieved
+future: <Task finished name='Task-18' coro=<find_role_editor_id_2() done, defined at /home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py:154> exception=ItemNotFound()>
+Traceback (most recent call last):
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 161, in find_role_editor_id_2
+    role = await find_role(resource_id, assignment_id)
+  File "/home/avyayjain/dummy-api_workspace/src/db/functions/find_role.py", line 137, in find_role
+    raise ItemNotFound
+src.db.errors.ItemNotFound
