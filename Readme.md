@@ -1,4 +1,4 @@
-This is Auction management system 
+## This is Auction management system 
 
 ## Installation
 1. Clone the repository
