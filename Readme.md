@@ -30,7 +30,7 @@ docker run -d -p 8000:8000 auction_management
 ```bash
 http://localhost:8000/docs
 ```
- Features of the auction management system
+## Features of the auction management system
 1. User can register and login
 2. Admin Can create the auction
 3. the user can make a bid on the auction by entering the item id
