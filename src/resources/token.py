@@ -252,6 +252,7 @@ async def get_current_active_user(current_user: UserBase = Depends(get_current_u
                 "================================================================== \n"
             )
         raise HTTPException(status_code=401, detail=details)
+
     return current_user
 
 
