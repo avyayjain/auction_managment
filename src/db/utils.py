@@ -1,7 +1,10 @@
 import datetime
 
 from sqlalchemy import create_engine, inspect
+from sqlalchemy.ext.asyncio import AsyncSession, create_async_engine
 from sqlalchemy.orm import sessionmaker
+
+from src.common.utils.constants import ASYNC_DB_CONNECTION_LINK
 
 
 class CustomBaseModel:
@@ -63,6 +66,23 @@ class DBConnection:
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.engine.dispose()
         self.session.close()
+
+
+engine = create_async_engine(
+    ASYNC_DB_CONNECTION_LINK, future=True
+)
+
+
+class AsyncDBConnection:
+    def __init__(self, expire_commit: bool = True):
+        self.expire_commit = expire_commit
+
+    async def __aenter__(self):
+        self.session = AsyncSession(bind=engine, expire_on_commit=self.expire_commit)
+        return self.session
+
+    async def __aexit__(self, exc_type, exc_val, exc_tb):
+        await self.session.close()
 
 
 def engine_creator(user, passwd, hostname, dbname, dbtype):

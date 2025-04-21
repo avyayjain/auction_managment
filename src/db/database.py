@@ -58,5 +58,15 @@ class ItemInformation(Base):
     won_by = Column(Integer, nullable=True)
 
 
+class Bid(Base):
+    __tablename__ = "bids"
+
+    bid_id = Column(Integer, primary_key=True)
+    item_id = Column(Integer, ForeignKey("item_information.item_id"), nullable=False)
+    user_id = Column(Integer, ForeignKey("user_info.user_id"), nullable=False)
+    bid_amount = Column(Integer, nullable=False)
+    bid_time = Column(DateTime(timezone=True), server_default=func.now())
+    item = relationship("ItemInformation", backref="bids")
+    user = relationship("Users", backref="bids")
 
 

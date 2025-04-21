@@ -262,14 +262,7 @@ async def login_for_access_token(form_data: AuthUser):
     API For Token Authorisation username
 
     """
-    # try:
-    #     check_email(email=form_data.email)
-    # except:
-    #     raise HTTPException(
-    #         status_code=status.HTTP_401_UNAUTHORIZED,
-    #         detail="Incorrect Email",
-    #         headers={"WWW-Authenticate": "Bearer"},
-    #     )
+
     try:
         user = authenticate_user(form_data.email_id, form_data.password)
     except UserErrors as e:

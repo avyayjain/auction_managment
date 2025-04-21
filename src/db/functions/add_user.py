@@ -37,24 +37,3 @@ def create_user(user_type: str, user_email: str, password: str, user_name: str):
         print(e)
         raise DatabaseConnectionError
 
-
-# def find_user_id(email_id: str):
-#     try:
-#         with DBConnection(DB_CONNECTION_LINK, False) as db:
-#             try:
-#                 user = (db.session.query(Users).filter(Users.email_id == email_id).first())
-#
-#                 user_id = user.user_id
-#                 return user_id
-#
-#             finally:
-#                 db.session.close()
-#     except Exception as e:
-#         print(e)
-#         raise DataInjectionError
-#
-#     except DatabaseErrors:
-#         raise
-#     except Exception as e:
-#         print(e)
-#         raise DatabaseConnectionError
