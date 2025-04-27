@@ -1,3 +1,4 @@
+import asyncio
 import json
 from typing import List, Dict
 
@@ -6,9 +7,11 @@ from jose import jwt, JWTError
 from pydantic import BaseModel, ValidationError, EmailStr
 from sqlalchemy import select
 from starlette import status
+from starlette.background import BackgroundTasks
 from starlette.websockets import WebSocket, WebSocketDisconnect
 
 from src.common.utils.constants import DB_CONNECTION_LINK, ASYNC_DB_CONNECTION_LINK, SECRET_KEY, ALGORITHM
+from src.common.utils.send_notification import send_bid_notification_email
 from src.db.database import Bid, ItemInformation, Users
 from src.db.utils import DBConnection, AsyncDBConnection
 from src.resources.token import get_current_user, UserBase
@@ -112,7 +115,7 @@ class BidManager:
             for connection in self.active_connections[item_id]:
                 await connection.send_json(message)
 
-    async def process_bid(self, item_id: int, user_id: int, amount: int):
+    async def process_bid(self, item_id: int, user_id: int, amount: int,background_tasks: BackgroundTasks):
         async with AsyncDBConnection(False) as db:
             try:
                 # 1. Get the item
@@ -138,6 +141,22 @@ class BidManager:
                 db.add(new_bid)
 
                 await db.commit()
+
+                prev_bids = await db.execute(
+                    select(Bid).where(
+                        Bid.item_id == item_id,
+                        Bid.user_id != user_id
+                    )
+                )
+                prev_bidder_ids = set(b.user_id for b in prev_bids.scalars().all())
+                if prev_bidder_ids:
+                    users = await db.execute(
+                        select(Users).where(Users.user_id.in_(prev_bidder_ids))
+                    )
+                    user_emails = [u.email_id for u in users.scalars().all()]
+                    for email in user_emails:
+                        asyncio.create_task(send_bid_notification_email(email, item.name, amount))
+
 
                 # 5. Return success response
                 return {
@@ -172,7 +191,7 @@ async def active_items_endpoint(websocket: WebSocket):
 
 
 @router.websocket("/ws/bid/{item_id}")
-async def bid_endpoint(websocket: WebSocket, item_id: int):
+async def bid_endpoint(websocket: WebSocket, item_id: int,background_tasks: BackgroundTasks):
     token = websocket.query_params.get("token")
     if not token:
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
@@ -184,7 +203,7 @@ async def bid_endpoint(websocket: WebSocket, item_id: int):
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
         return
 
-    await websocket.accept()  # ✅ Accept WebSocket before using it
+    await websocket.accept()
     await bid_manager.connect(websocket, item_id)
 
     try:
@@ -195,7 +214,8 @@ async def bid_endpoint(websocket: WebSocket, item_id: int):
                 result = await bid_manager.process_bid(
                     item_id,
                     current_user.user_id,
-                    bid_data.amount
+                    bid_data.amount,
+                    background_tasks
                 )
                 if "error" in result:
                     await websocket.send_json(result)

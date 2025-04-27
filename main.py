@@ -1,4 +1,5 @@
 import uvicorn
+
 from fastapi import FastAPI
 from starlette.middleware.cors import CORSMiddleware
 from starlette.responses import HTMLResponse
@@ -30,11 +31,9 @@ app.include_router(bidding.router)
 
 @app.get("/live", response_class=HTMLResponse)
 async def get_live_view():
-    with open("templates/bid_view.html") as f:
+    with open("frontend/templates/bid_view.html") as f:
         return f.read()
 
 if __name__ == "__main__":
     uvicorn.run(app, host="0.0.0.0", port=8000)
 
-# if __name__ == "__main__":
-#     uvicorn.run(app2, host="0.0.0.0", port=8001)

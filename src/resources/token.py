@@ -256,6 +256,15 @@ async def get_current_active_user(current_user: UserBase = Depends(get_current_u
     return current_user
 
 
+@token_router.get("/users/me/", response_model=UserBase)
+async def read_users_me(current_user: UserBase = Depends(get_current_active_user)):
+    """
+    API For Token Authorisation
+
+    """
+
+    return current_user
+
 @token_router.post("", response_model=Token)
 async def login_for_access_token(form_data: AuthUser):
     """
