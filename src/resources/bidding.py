@@ -1,7 +1,7 @@
 import asyncio
 import json
 from typing import List, Dict
-
+from src.db.functions.task import send_email_task
 from fastapi import Depends, APIRouter, HTTPException
 from jose import jwt, JWTError
 from pydantic import BaseModel, ValidationError, EmailStr
@@ -155,7 +155,7 @@ class BidManager:
                     )
                     user_emails = [u.email_id for u in users.scalars().all()]
                     for email in user_emails:
-                        asyncio.create_task(send_bid_notification_email(email, item.name, amount))
+                        send_email_task.delay(email, item.name, amount)
 
 
                 # 5. Return success response
