@@ -1,19 +1,17 @@
-from fastapi_mail import FastMail, MessageSchema, ConnectionConfig
-
+from fastapi_mail import FastMail, MessageSchema
 from src.common.utils.constants import CONF
 
 
 async def send_bid_notification_email(email_to: str, item_name: str, bid_amount: int):
-    subject = f"New bid on item you bid: {item_name}"
-    body = f"""
-    <p>Someone has placed a new bid of {bid_amount} on the item <b>{item_name}</b> that you have previously bid on.</p>
-    <p>Visit the auction site to see the latest updates.</p>
-    """
     message = MessageSchema(
-        subject=subject,
+        subject=f"New bid on item you bid: {item_name}",
         recipients=[email_to],
-        body=body,
+        template_body={
+            "item_name": item_name,
+            "bid_amount": bid_amount
+        },
         subtype="html"
     )
     fm = FastMail(CONF)
-    await fm.send_message(message)
+    await fm.send_message(message, template_name="bid_email.html")
+
