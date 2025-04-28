@@ -32,5 +32,5 @@ CONF = ConnectionConfig(
     MAIL_SERVER=os.getenv("MAIL_SERVER"),
     MAIL_TLS=True,
     USE_CREDENTIALS=os.getenv("USE_CREDENTIALS"),
-    TEMPLATE_FOLDER=Path("src/bid email/bid_email.html").parent
+    TEMPLATE_FOLDER=Path("src/bid email").parent
 )

@@ -13,7 +13,6 @@ from src.resources.sign_up import add_user_router
 from src.resources.token import token_router
 
 app = FastAPI()
-app2 = FastAPI()
 
 app.add_middleware(
     CORSMiddleware,
