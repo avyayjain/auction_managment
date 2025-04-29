@@ -1,5 +1,3 @@
-from datetime import datetime
-
 from src.common.utils.constants import DB_CONNECTION_LINK
 from src.db.database import ItemInformation
 from src.db.errors import DataInjectionError, DatabaseErrors, DatabaseConnectionError
@@ -86,12 +84,9 @@ def get_item_detail():
                             "status": item.status,
                             "won_by": item.won_by
                         })
-                else:
-                    return {
-                        "message": "No item found"
-                    }
-
-                return output
+                return output if output else {
+                    "message": "No item found"
+                }
             except Exception as e:
                 print(e)
                 raise DataInjectionError
@@ -125,11 +120,9 @@ def get_item_detail_for_user():
                             "won_by": item.won_by
                         })
                 else:
-                    return {
+                    return output if output else {
                         "message": "No item found"
                     }
-
-                return output
             except Exception as e:
                 print(e)
                 raise DataInjectionError

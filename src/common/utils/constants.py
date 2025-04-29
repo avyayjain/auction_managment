@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-from fastapi_mail import MessageSchema, ConnectionConfig
+from fastapi_mail import ConnectionConfig
 from pathlib import Path
 
 load_dotenv()

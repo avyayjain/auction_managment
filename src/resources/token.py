@@ -1,5 +1,8 @@
 from datetime import datetime, timedelta
 from typing import Optional
+
+from sqlalchemy import select
+
 from src.common.utils.generate_logs import logging
 from fastapi import Depends, HTTPException, status, APIRouter
 from fastapi.security import OAuth2PasswordBearer
@@ -13,9 +16,11 @@ from src.common.utils.constants import (
     ALGORITHM,
 )
 from src.common.utils.user_defined_errors import UserErrors, PermissionDeniedError
+from src.db.database import Users
 from src.db.errors import ItemNotFound
 from src.db.functions.find_user import find_user_pass_email, find_user_pass_email_id
 from src.db.functions.logout import user_login, user_logout
+from src.db.utils import AsyncDBConnection
 
 token_router = APIRouter()
 
@@ -133,6 +138,30 @@ def create_access_token(data: dict, expires_delta: Optional[timedelta] = None):
     encoded_jwt = jwt.encode(to_encode, SECRET_KEY, algorithm=ALGORITHM)
     return encoded_jwt
 
+
+async def get_websocket_user(token: str):
+    credentials_exception = HTTPException(
+        status_code=status.HTTP_401_UNAUTHORIZED,
+        detail="Could not validate credentials",
+    )
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        email: EmailStr = payload.get("sub")
+        if email is None:
+            raise credentials_exception
+
+        # Corrected: Use the session within the context manager
+        async with AsyncDBConnection(False) as db:
+            result = await db.execute(select(Users).where(Users.email_id == email))
+            user = result.scalar_one_or_none()
+            if user is None:
+                raise credentials_exception
+            print(user.user_id, user.email_id, user.user_type)  # Debug
+            return user  # Return user INSIDE the context manager
+
+    except JWTError as e:
+        print(f"JWT Error: {str(e)}")
+        raise credentials_exception
 
 async def get_current_user(token: str = Depends(oauth2_scheme)):
     """
