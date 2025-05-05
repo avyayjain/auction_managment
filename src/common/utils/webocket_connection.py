@@ -2,6 +2,20 @@ from typing import Dict, List
 from fastapi import WebSocket
 from src.common.utils.error_handlers import logger
 from src.db.functions.websocket_bids_manager import fetch_active_items
+from pydantic import BaseModel
+from typing import Optional
+from datetime import datetime
+
+class ActiveItemWebSocketResponse(BaseModel):
+    item_id: int
+    name: str
+    current_bid: Optional[int]
+    start_price: int
+    status: bool
+    start_time: Optional[datetime]
+    end_time: Optional[datetime]
+    won_by: Optional[int]
+    image_url: Optional[str]
 
 
 class BidManager:
@@ -38,6 +52,7 @@ class ActiveItemsManager:
     async def broadcast_active_items(self):
         try:
             active_items = await fetch_active_items()
+            serialized = [ActiveItemWebSocketResponse(**item).dict() for item in active_items]
             for connection in self.active_connections:
                 await connection.send_json(active_items)
         except Exception as e:

@@ -1,23 +1,32 @@
+from sqlalchemy.sql.functions import now
 from src.common.utils.constants import DB_CONNECTION_LINK
 from src.db.database import ItemInformation
 from src.db.errors import DataInjectionError, DatabaseErrors, DatabaseConnectionError
 from src.db.utils import DBConnection
 
 
-def add_item_detail(item_name: str, start_time, end_time, start_price: int):
+def add_item_detail(item_name: str, start_time, end_time, start_price: int, filepath: str):
     try:
         with DBConnection(DB_CONNECTION_LINK, False) as db:
             try:
+
+                if start_time and start_time > now:
+                    status = "upcoming"
+                elif end_time and end_time < now:
+                    status = "completed"
+                else:
+                    status = "live"
+
                 item = ItemInformation(
                     name=item_name,
                     start_time=start_time,
                     end_time=end_time,
-                    status=True,
+                    status=status,
                     start_price=start_price,
                     current_bid=start_price,
                     user_id=None,
-                    won_by=None
-
+                    won_by=None,
+                    filepath=filepath
                 )
                 db.session.add(item)
                 db.session.commit()

@@ -34,3 +34,7 @@ CONF = ConnectionConfig(
     USE_CREDENTIALS=os.getenv("USE_CREDENTIALS"),
     TEMPLATE_FOLDER=Path("src/bid email").parent
 )
+
+BYTES_PER_CHUNK = 1000
+
+FILE_FOLDER_PATH = os.path.join(os.getcwd(), 'files')

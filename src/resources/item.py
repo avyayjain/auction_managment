@@ -1,7 +1,11 @@
+import asyncio
+import os
 from datetime import datetime
 from typing import Optional
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, File, UploadFile
 from pydantic import BaseModel
+
+from src.common.utils.constants import FILE_FOLDER_PATH, BYTES_PER_CHUNK
 from src.common.utils.user_defined_errors import UserUser
 from src.db.functions.item import update_item_detail, add_item_detail, get_item_detail, get_item_detail_by_id, \
     get_item_detail_for_user, delete_item
@@ -29,14 +33,27 @@ class UpdateItem(BaseModel):
 
 
 @item_router.post("/add_item_details")
-async def add_item_details(
-        data: ItemBase, current_user: UserBase = Depends(get_current_active_user)
-):
+async def add_item_details(data: ItemBase, file: UploadFile = File(..., description='Upload a file'),
+                           current_user: UserBase = Depends(get_current_active_user)):
 
     if current_user.user_type == "user":
         raise UserUser(message="Normal User can't add item login as admin")
 
-    item = add_item_detail(data.item_name, data.start_time, data.end_time, data.start_price)
+    file_pointer = 0  # Stores which part of file we're reading currently
+    filename = file.filename
+    filepath = os.path.join(FILE_FOLDER_PATH, filename)
+    data2 = await file.read(BYTES_PER_CHUNK)
+
+    with open(filepath, 'wb+') as f:
+
+        while data2:
+            task = asyncio.create_task(file.seek(file_pointer))  # Highly Optional
+            f.write(data2)
+            file_pointer += BYTES_PER_CHUNK
+            await task
+            data2 = await file.read(BYTES_PER_CHUNK)
+
+    item = add_item_detail(data.item_name, data.start_time, data.end_time, data.start_price,filepath)
 
     return {"message": "Item Added", "item_id": item}
 

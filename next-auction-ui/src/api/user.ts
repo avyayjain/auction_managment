@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { setToken, setUser, removeToken, removeUser, getAuthHeader } from '../utils/auth';
 
-// API base URL from environment or default to localhost
-const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+// API base URL from environment variable
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
 // Interface definitions
 export interface User {
@@ -489,29 +489,40 @@ export const getUserItems = async (): Promise<any[]> => {
       ];
     }
 
+    const headers = {
+      'Content-Type': 'application/json',
+      ...getAuthHeader(),
+    };
+    
+    console.log('Fetching user items from:', `${API_BASE_URL}/items/user`, 'with headers:', headers);
+    
     const response = await fetch(`${API_BASE_URL}/items/user`, {
       method: 'GET',
-      headers: {
-        'Content-Type': 'application/json',
-        ...getAuthHeader(),
-      },
+      headers,
     });
 
     if (!response.ok) {
       if (!response.status) {
         throw new Error('Cannot connect to the server. Please try again later.');
       }
-      const error = await response.json();
-      throw new Error(error.detail || 'Failed to fetch user items');
+      const errorData = await response.json().catch(() => ({ detail: 'Failed to fetch user items' }));
+      throw new Error(errorData.detail || `Failed to fetch user items: ${response.statusText}`);
     }
 
-    return await response.json();
+    const data = await response.json();
+    return data;
   } catch (error) {
-    if (!useFallback && error instanceof Error && error.message.includes('Cannot connect to the server')) {
+    console.error('Error fetching user items:', error);
+    
+    // Check if server is unreachable and switch to fallback mode
+    if (!useFallback && error instanceof Error && 
+        (error.message.includes('Cannot connect to the server') || 
+         error.message.includes('Failed to fetch'))) {
+      console.log('API server seems unreachable, switching to fallback mode');
       useFallback = true;
       return getUserItems();
     }
-    console.error('Error fetching user items:', error);
+    
     throw error;
   }
 }; 

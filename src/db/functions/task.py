@@ -1,6 +1,6 @@
 from src.common.utils.send_notification import send_bid_notification_email, winner_email_template, loser_email_template, \
     send_email
-from src.db.functions import celery_app
+from src.db.functions.celery_app import celery_app
 
 @celery_app.task
 def send_email_task(email: str, item_name: str, bid_amount: int):

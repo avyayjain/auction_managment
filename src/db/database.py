@@ -1,23 +1,25 @@
+import sqlalchemy
 from sqlalchemy import (
-    ARRAY,
-    JSON,
-    TEXT,
     Boolean,
     Column,
     DateTime,
     ForeignKey,
     Integer,
-    String, Sequence,
+    String,
+    Enum
 )
-
-from sqlalchemy.dialects import postgresql
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import backref, relationship
 from sqlalchemy.sql import func
-
 from src.db.utils import CustomBaseModel
+import enum
 
 Base = declarative_base(cls=CustomBaseModel)
+
+class ItemStatus(enum.Enum):
+    UPCOMING = "upcoming"
+    LIVE = "live"
+    COMPLETED = "completed"
 
 
 class Users(Base):
@@ -37,7 +39,6 @@ class Users(Base):
 
 class ItemInformation(Base):
     __tablename__ = "item_information"
-    # __table_args__ = {"useexisting": True}
 
     item_id = Column(
         Integer,
@@ -53,9 +54,10 @@ class ItemInformation(Base):
         ForeignKey("user_info.user_id"),
         nullable=True,
     )
-    status = Column(Boolean, nullable=False)
+    status = Column(Enum(ItemStatus, name="itemtype"), nullable=False, default=ItemStatus.UPCOMING)
     start_price = Column(Integer, nullable=True)
     won_by = Column(Integer, nullable=True)
+    filepath = Column(String, nullable=True)
 
 
 class Bid(Base):

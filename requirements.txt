@@ -47,3 +47,6 @@ tomli==2.0.1
 typing_extensions==4.0.0
 urllib3==1.26.7
 uvicorn==0.15.0
+
+celery~=5.5.2
+APScheduler~=3.11.0

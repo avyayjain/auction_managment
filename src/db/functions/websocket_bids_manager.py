@@ -1,3 +1,5 @@
+import os
+
 from fastapi import HTTPException
 from sqlalchemy import select
 from starlette.background import BackgroundTasks
@@ -86,7 +88,8 @@ def serialize_item(item: ItemInformation) -> dict:
         "current_bid": item.current_bid,
         "end_time": item.end_time.isoformat() if item.end_time else None,
         "start_time": item.start_time.isoformat() if item.start_time else None,
-        "status": item.status,
+        "status": item.status.value,
         "start_price": item.start_price,
         "won_by": item.won_by,
+        "image_url": f"{os.path.basename(item.filepath)}" if item.filepath else None
     }

@@ -91,7 +91,7 @@ async def bid_endpoint(websocket: WebSocket, item_id: int, background_tasks: Bac
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
         return
 
-    if current_user is "admin":
+    if current_user == "admin":
         await websocket.send_json({"error": "Admin cannot place bids", "type": "PermissionDeniedError"})
         await websocket.close(code=status.WS_1008_POLICY_VIOLATION)
         return

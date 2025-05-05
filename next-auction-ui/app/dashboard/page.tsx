@@ -1,11 +1,13 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { getUserItems } from '../../src/api/user';
 import { formatPrice, formatDateDDMMYYHHMM } from '../../src/lib/utils/time';
 import Loader from '../../src/components/ui/Loader';
+import { getUser } from '../../src/utils/auth';
 
 interface AuctionItem {
   item_id: number;
@@ -20,6 +22,7 @@ interface AuctionItem {
 }
 
 export default function Dashboard() {
+  const router = useRouter();
   const [userItems, setUserItems] = useState<AuctionItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
@@ -47,6 +50,26 @@ export default function Dashboard() {
     if (now > end) return { text: 'Completed', color: 'text-red-600' };
     return { text: 'Active', color: 'text-green-600' };
   };
+
+  useEffect(() => {
+    // Check user authentication and role
+    const user = getUser();
+    
+    if (!user) {
+      // Redirect to login if not authenticated
+      router.push('/login');
+      return;
+    }
+    
+    // Redirect based on user role
+    if (user.user_type === 'admin') {
+      router.push('/dashboard/admin');
+    } else if (user.user_type === 'seller') {
+      router.push('/dashboard/seller');
+    } else {
+      router.push('/dashboard/user');
+    }
+  }, [router]);
 
   useEffect(() => {
     async function fetchUserItems() {

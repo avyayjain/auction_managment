@@ -1,63 +1,43 @@
 import axios from 'axios';
 
-// Get the API URL from environment variables or default to localhost
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
+// Use the environment variable or fallback to a default
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000/api';
 
-// Create axios instance with base configuration
-export const api = axios.create({
+// Create axios instance with base URL
+const api = axios.create({
   baseURL: API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
-  timeout: 10000, // 10 seconds timeout
 });
 
-// Add request interceptor for authentication token
+// Add a request interceptor to include auth token when available
 api.interceptors.request.use(
   (config) => {
-    // Get token from localStorage (only in browser)
-    let token: string | null = null;
     if (typeof window !== 'undefined') {
-      token = localStorage.getItem('token');
-    }
-    
-    // Add token to header if available
-    if (token && config.headers) {
-      config.headers.Authorization = `Bearer ${token}`;
+      const token = localStorage.getItem('auction_token');
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
+      }
     }
     return config;
   },
-  (error) => {
-    return Promise.reject(error);
-  }
+  (error) => Promise.reject(error)
 );
 
-// Add response interceptor for error handling
+// Add a response interceptor for handling common errors
 api.interceptors.response.use(
-  (response) => {
-    return response;
-  },
-  async (error) => {
-    const originalRequest = error.config;
-    
-    // Handle unauthorized errors (401)
-    if (error.response?.status === 401 && !originalRequest._retry) {
-      // If running in browser, clear token
+  (response) => response,
+  (error) => {
+    // Handle common errors like 401 Unauthorized
+    if (error.response && error.response.status === 401) {
+      // Handle token expiration - redirect to login
       if (typeof window !== 'undefined') {
-        localStorage.removeItem('token');
-      }
-
-      // Redirect to login page if in browser and not already on login page
-      if (typeof window !== 'undefined' && !window.location.pathname.includes('/login')) {
+        localStorage.removeItem('auction_token');
+        localStorage.removeItem('auction_user');
         window.location.href = '/login';
       }
     }
-    
-    // Handle server errors (500+)
-    if (error.response?.status >= 500) {
-      console.error('Server error:', error);
-    }
-    
     return Promise.reject(error);
   }
 );
